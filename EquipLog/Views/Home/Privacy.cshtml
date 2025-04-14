@@ -1,0 +1,574 @@
+﻿<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EquipLog Dashboard - Equipment and Maintenance Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/dashboard.css" asp-append-version="true">
+   @*  <link href="stylesheet" href="~/css/Privacy.css" /> *@
+</head>
+<body class="dashboard-body">
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="bi bi-tools"></i>
+                    <span>EquipLog</span>
+                </div>
+                <button class="btn-close-sidebar d-lg-none" id="closeSidebar">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+            <div class="sidebar-user">
+                <img src="https://ui-avatars.com/api/?name=Admin+User&background=6366f1&color=fff" alt="User" class="sidebar-user-img">
+                <div class="sidebar-user-info">
+                    <p class="sidebar-user-name">Admin User</p>
+                    <p class="sidebar-user-role">Administrator</p>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul class="sidebar-menu">
+                    <li class="sidebar-menu-item active">
+                        <a href="#" class="sidebar-menu-link">
+                            <i class="bi bi-speedometer2"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-menu-item">
+                        <a href="#" class="sidebar-menu-link">
+                            <i class="bi bi-box-seam"></i>
+                            <span>Equipment</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-menu-item">
+                        <a href="#" class="sidebar-menu-link">
+                            <i class="bi bi-tools"></i>
+                            <span>Maintenance</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-menu-item">
+                        <a href="#" class="sidebar-menu-link">
+                            <i class="bi bi-people"></i>
+                            <span>Users</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-menu-item">
+                        <a href="#" class="sidebar-menu-link">
+                            <i class="bi bi-file-earmark-text"></i>
+                            <span>Documents</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-menu-item">
+                        <a href="#" class="sidebar-menu-link">
+                            <i class="bi bi-graph-up"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-menu-header">Settings</li>
+                    <li class="sidebar-menu-item">
+                        <a href="#" class="sidebar-menu-link">
+                            <i class="bi bi-gear"></i>
+                            <span>System Settings</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-menu-item">
+                        <a href="#" class="sidebar-menu-link">
+                            <i class="bi bi-bell"></i>
+                            <span>Notifications</span>
+                            <span class="badge bg-danger rounded-pill ms-auto">5</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-menu-item mt-auto">
+                        <a href="index.html" class="sidebar-menu-link text-danger">
+                            <i class="bi bi-box-arrow-right"></i>
+                            <span>Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top Navigation Bar -->
+            <header class="top-nav">
+                <button class="btn-toggle-sidebar" id="toggleSidebar">
+                    <i class="bi bi-list"></i>
+                </button>
+                <div class="search-container">
+                    <i class="bi bi-search"></i>
+                    <input type="text" placeholder="Search for equipment, users...">
+                </div>
+                <div class="top-nav-actions">
+                    <div class="dropdown">
+                        <button class="btn-nav-action" id="notificationsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-bell"></i>
+                            <span class="badge bg-danger">3</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end notification-dropdown" aria-labelledby="notificationsDropdown">
+                            <li class="dropdown-header">
+                                <h6 class="mb-0">Notifications</h6>
+                                <span class="badge bg-primary rounded-pill">3 New</span>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li class="notification-item">
+                                <i class="bi bi-exclamation-circle text-warning"></i>
+                                <div>
+                                    <p class="notification-title">Maintenance Due</p>
+                                    <p class="notification-text">Server #2 requires maintenance</p>
+                                    <p class="notification-time">2 hours ago</p>
+                                </div>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li class="notification-item">
+                                <i class="bi bi-check-circle text-success"></i>
+                                <div>
+                                    <p class="notification-title">Repair Completed</p>
+                                    <p class="notification-text">Printer HP-2200 repair completed</p>
+                                    <p class="notification-time">1 day ago</p>
+                                </div>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li class="notification-item">
+                                <i class="bi bi-info-circle text-primary"></i>
+                                <div>
+                                    <p class="notification-title">New Equipment Added</p>
+                                    <p class="notification-text">5 new laptops added to inventory</p>
+                                    <p class="notification-time">3 days ago</p>
+                                </div>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li class="dropdown-footer">
+                                <a href="#">Show all notifications</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn-nav-action user-avatar" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://ui-avatars.com/api/?name=Admin+User&background=6366f1&color=fff" alt="User">
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>My Profile</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="index.html"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="content-wrapper">
+                <div class="content-header">
+                    <div>
+                        <h1 class="content-title">Dashboard</h1>
+                        <p class="content-subtitle">Equipment and maintenance overview</p>
+                    </div>
+                    <div class="content-actions">
+                        <button class="btn btn-outline-primary">
+                            <i class="bi bi-download me-2"></i>Export
+                        </button>
+                        <button class="btn btn-primary pulse-animation">
+                            <i class="bi bi-plus me-2"></i>Add New Equipment
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Status Cards -->
+                <div class="row g-4 mb-4">
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="dashboard-card stats-card animate__animated animate__fadeInUp">
+                            <div class="stats-icon bg-primary">
+                                <i class="bi bi-box-seam"></i>
+                            </div>
+                            <div class="stats-details">
+                                <h3 class="stats-number">258</h3>
+                                <p class="stats-text">Total Equipment</p>
+                            </div>
+                            <div class="stats-progress">
+                                <div class="progress">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 85%"></div>
+                                </div>
+                                <p class="stats-progress-text">85% in use</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="dashboard-card stats-card animate__animated animate__fadeInUp" style="animation-delay: 0.1s;">
+                            <div class="stats-icon bg-warning">
+                                <i class="bi bi-tools"></i>
+                            </div>
+                            <div class="stats-details">
+                                <h3 class="stats-number">24</h3>
+                                <p class="stats-text">Pending Maintenance</p>
+                            </div>
+                            <div class="stats-progress">
+                                <div class="progress">
+                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 24%"></div>
+                                </div>
+                                <p class="stats-progress-text">8 high priority</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="dashboard-card stats-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+                            <div class="stats-icon bg-success">
+                                <i class="bi bi-check-circle"></i>
+                            </div>
+                            <div class="stats-details">
+                                <h3 class="stats-number">182</h3>
+                                <p class="stats-text">Operational Items</p>
+                            </div>
+                            <div class="stats-progress">
+                                <div class="progress">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 70%"></div>
+                                </div>
+                                <p class="stats-progress-text">70% of total</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="dashboard-card stats-card animate__animated animate__fadeInUp" style="animation-delay: 0.3s;">
+                            <div class="stats-icon bg-danger">
+                                <i class="bi bi-exclamation-triangle"></i>
+                            </div>
+                            <div class="stats-details">
+                                <h3 class="stats-number">12</h3>
+                                <p class="stats-text">Critical Issues</p>
+                            </div>
+                            <div class="stats-progress">
+                                <div class="progress">
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 12%"></div>
+                                </div>
+                                <p class="stats-progress-text">Needs attention</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Row -->
+                <div class="row g-4 mb-4">
+                    <div class="col-lg-8">
+                        <div class="dashboard-card animate__animated animate__fadeIn" style="animation-delay: 0.4s;">
+                            <div class="card-header">
+                                <h5 class="card-title">Equipment Status Overview</h5>
+                                <div class="card-actions">
+                                    <div class="btn-group" role="group">
+                                        <input type="radio" class="btn-check" name="chartOption" id="monthly" autocomplete="off" checked>
+                                        <label class="btn btn-sm btn-outline-primary" for="monthly">Monthly</label>
+
+                                        <input type="radio" class="btn-check" name="chartOption" id="yearly" autocomplete="off">
+                                        <label class="btn btn-sm btn-outline-primary" for="yearly">Yearly</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="chart-container">
+                                    <!-- Mock chart - would be replaced with actual charting library -->
+                                    <div class="mock-bar-chart">
+                                        <div class="mock-bar-group">
+                                            <div class="mock-bar mock-bar-1" style="height: 70%"></div>
+                                            <div class="mock-bar mock-bar-2" style="height: 40%"></div>
+                                            <div class="mock-bar mock-bar-3" style="height: 20%"></div>
+                                        </div>
+                                        <div class="mock-bar-group">
+                                            <div class="mock-bar mock-bar-1" style="height: 80%"></div>
+                                            <div class="mock-bar mock-bar-2" style="height: 30%"></div>
+                                            <div class="mock-bar mock-bar-3" style="height: 10%"></div>
+                                        </div>
+                                        <div class="mock-bar-group">
+                                            <div class="mock-bar mock-bar-1" style="height: 65%"></div>
+                                            <div class="mock-bar mock-bar-2" style="height: 45%"></div>
+                                            <div class="mock-bar mock-bar-3" style="height: 15%"></div>
+                                        </div>
+                                        <div class="mock-bar-group">
+                                            <div class="mock-bar mock-bar-1" style="height: 90%"></div>
+                                            <div class="mock-bar mock-bar-2" style="height: 20%"></div>
+                                            <div class="mock-bar mock-bar-3" style="height: 5%"></div>
+                                        </div>
+                                        <div class="mock-bar-group">
+                                            <div class="mock-bar mock-bar-1" style="height: 75%"></div>
+                                            <div class="mock-bar mock-bar-2" style="height: 35%"></div>
+                                            <div class="mock-bar mock-bar-3" style="height: 25%"></div>
+                                        </div>
+                                        <div class="mock-bar-group">
+                                            <div class="mock-bar mock-bar-1" style="height: 85%"></div>
+                                            <div class="mock-bar mock-bar-2" style="height: 50%"></div>
+                                            <div class="mock-bar mock-bar-3" style="height: 30%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="chart-legend">
+                                        <div class="legend-item">
+                                            <span class="legend-color bg-primary"></span>
+                                            <span class="legend-text">Operational</span>
+                                        </div>
+                                        <div class="legend-item">
+                                            <span class="legend-color bg-warning"></span>
+                                            <span class="legend-text">Maintenance</span>
+                                        </div>
+                                        <div class="legend-item">
+                                            <span class="legend-color bg-danger"></span>
+                                            <span class="legend-text">Critical</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="dashboard-card animate__animated animate__fadeIn" style="animation-delay: 0.5s;">
+                            <div class="card-header">
+                                <h5 class="card-title">Equipment by Category</h5>
+                                <div class="dropdown">
+                                    <button class="btn btn-sm btn-light" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-three-dots-vertical"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                                        <li><a class="dropdown-item" href="#">View Details</a></li>
+                                        <li><a class="dropdown-item" href="#">Export Data</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <!-- Mock donut chart -->
+                                <div class="mock-donut-container">
+                                    <div class="mock-donut">
+                                        <div class="mock-donut-segment mock-donut-segment-1"></div>
+                                        <div class="mock-donut-segment mock-donut-segment-2"></div>
+                                        <div class="mock-donut-segment mock-donut-segment-3"></div>
+                                        <div class="mock-donut-segment mock-donut-segment-4"></div>
+                                        <div class="mock-donut-hole"></div>
+                                    </div>
+                                </div>
+                                <div class="chart-legend mt-4">
+                                    <div class="legend-item">
+                                        <span class="legend-color" style="background-color: #6366f1"></span>
+                                        <span class="legend-text">Computing (45%)</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="legend-color" style="background-color: #10b981"></span>
+                                        <span class="legend-text">Office (25%)</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="legend-color" style="background-color: #f59e0b"></span>
+                                        <span class="legend-text">Machinery (20%)</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="legend-color" style="background-color: #ef4444"></span>
+                                        <span class="legend-text">Other (10%)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity and Pending Maintenance -->
+                <div class="row g-4">
+                    <div class="col-lg-7">
+                        <div class="dashboard-card animate__animated animate__fadeIn" style="animation-delay: 0.6s;">
+                            <div class="card-header">
+                                <h5 class="card-title">Recent Equipment Activity</h5>
+                                <a href="#" class="btn btn-sm btn-outline-primary">View All</a>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-hover activity-table mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>Equipment</th>
+                                                <th>Action</th>
+                                                <th>User</th>
+                                                <th>Date</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="equipment-icon">
+                                                            <i class="bi bi-laptop"></i>
+                                                        </div>
+                                                        <span>Dell XPS 13</span>
+                                                    </div>
+                                                </td>
+                                                <td>Maintenance</td>
+                                                <td>John Smith</td>
+                                                <td>Apr 8, 2025</td>
+                                                <td><span class="badge bg-success">Completed</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="equipment-icon">
+                                                            <i class="bi bi-printer"></i>
+                                                        </div>
+                                                        <span>HP LaserJet Pro</span>
+                                                    </div>
+                                                </td>
+                                                <td>Issue Reported</td>
+                                                <td>Maria Garcia</td>
+                                                <td>Apr 7, 2025</td>
+                                                <td><span class="badge bg-warning">Pending</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="equipment-icon">
+                                                            <i class="bi bi-hdd-rack"></i>
+                                                        </div>
+                                                        <span>Server #3</span>
+                                                    </div>
+                                                </td>
+                                                <td>New Assignment</td>
+                                                <td>David Wilson</td>
+                                                <td>Apr 6, 2025</td>
+                                                <td><span class="badge bg-info">Assigned</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="equipment-icon">
+                                                            <i class="bi bi-display"></i>
+                                                        </div>
+                                                        <span>Dell Monitor 27"</span>
+                                                    </div>
+                                                </td>
+                                                <td>Added</td>
+                                                <td>Admin User</td>
+                                                <td>Apr 5, 2025</td>
+                                                <td><span class="badge bg-primary">New</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="equipment-icon">
+                                                            <i class="bi bi-phone"></i>
+                                                        </div>
+                                                        <span>iPhone 15 Pro</span>
+                                                    </div>
+                                                </td>
+                                                <td>Repair</td>
+                                                <td>Sarah Johnson</td>
+                                                <td>Apr 4, 2025</td>
+                                                <td><span class="badge bg-danger">Critical</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5">
+                        <div class="dashboard-card mb-4 animate__animated animate__fadeIn" style="animation-delay: 0.7s;">
+                            <div class="card-header">
+                                <h5 class="card-title">Pending Maintenance</h5>
+                                <div class="dropdown">
+                                    <button class="btn btn-sm btn-light" type="button" id="maintenanceDropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-three-dots-vertical"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="maintenanceDropdownMenu">
+                                        <li><a class="dropdown-item" href="#">Schedule All</a></li>
+                                        <li><a class="dropdown-item" href="#">Generate Report</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="maintenance-item">
+                                    <div class="equipment-icon">
+                                        <i class="bi bi-hdd-rack"></i>
+                                    </div>
+                                    <div class="maintenance-info">
+                                        <h6>Server #2 Monthly Check</h6>
+                                        <p class="text-muted mb-2">Routine maintenance check including cooling system</p>
+                                        <div class="d-flex align-items-center">
+                                            <span class="badge bg-danger me-2">High Priority</span>
+                                            <span class="text-muted small">Due in 2 days</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="maintenance-item">
+                                    <div class="equipment-icon">
+                                        <i class="bi bi-printer"></i>
+                                    </div>
+                                    <div class="maintenance-info">
+                                        <h6>HP LaserJet Pro Repair</h6>
+                                        <p class="text-muted mb-2">Paper jam issue in tray 2 needs fixing</p>
+                                        <div class="d-flex align-items-center">
+                                            <span class="badge bg-warning me-2">Medium Priority</span>
+                                            <span class="text-muted small">Due in 5 days</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="maintenance-item">
+                                    <div class="equipment-icon">
+                                        <i class="bi bi-tools"></i>
+                                    </div>
+                                    <div class="maintenance-info">
+                                        <h6>AC Units Service</h6>
+                                        <p class="text-muted mb-2">Quarterly maintenance for all AC units</p>
+                                        <div class="d-flex align-items-center">
+                                            <span class="badge bg-info me-2">Low Priority</span>
+                                            <span class="text-muted small">Due in 14 days</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer text-center">
+                                <button class="btn btn-primary">
+                                    <i class="bi bi-calendar-check me-2"></i>Schedule Maintenance
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="dashboard-card animate__animated animate__fadeIn" style="animation-delay: 0.8s;">
+                            <div class="card-header">
+                                <h5 class="card-title">Quick Actions</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-6">
+                                        <a href="#" class="quick-action-card">
+                                            <i class="bi bi-plus-circle"></i>
+                                            <span>Add Equipment</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-6">
+                                        <a href="#" class="quick-action-card">
+                                            <i class="bi bi-wrench"></i>
+                                            <span>Log Maintenance</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-6">
+                                        <a href="#" class="quick-action-card">
+                                            <i class="bi bi-people"></i>
+                                            <span>Assign User</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-6">
+                                        <a href="#" class="quick-action-card">
+                                            <i class="bi bi-file-earmark-arrow-up"></i>
+                                            <span>Upload Docs</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/dashboard.js"></script>
+    <script src="~/js/min.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+﻿#myB {
+    color: #6b7280 !important;
+    font-weight: 510;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+    #myB:after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 50%;
+        background-color: #6366f1;
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+        opacity: 0;
+    }
+
+    #myB:hover:after,
+    #myB.active:after {
+        width: 70%;
+        opacity: 1;
+    }
+
+    #myB:hover,
+    #myB.active {
+        color: #6366f1 !important;
+    }
