@@ -6,6 +6,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
      <link rel="stylesheet" href="css/site.css"> 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js" integrity="sha512-jEnuDt6jfecCjthQAJ+ed0MTVA++5ZKmlUcmDGBv2vUI/REn6FuIdixLNnQT+vKusE2hhTk2is3cFvv5wA+Sgg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
 </head>
 <div class="hero-section d-flex align-items-center text-light">
     <div class="container">
@@ -28,7 +31,7 @@
             </div>
             <div class="col-lg-6 animate__animated animate__fadeInRight">
                 <div class="position-relative">
-                    <div class="position-absolute top-0 start-0 translate-middle-y">
+                  @*   <div class="position-absolute top-0 start-0 translate-middle-y">
                         <div class="badge bg-success p-2 rounded-pill float">
                             <i class="bi bi-check-circle me-1"></i> Easy to Use
                         </div>
@@ -42,8 +45,11 @@
                         <div class="badge bg-info p-2 rounded-pill float" style="animation-delay: 2s">
                             <i class="bi bi-graph-up me-1"></i> Track Value
                         </div>
+                    </div> *@
+                   @*  <img src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81" alt="Equipment Management" class="img-fluid rounded-4 hero-image shadow"> *@
+                    <div class="glass-wrapper text-center p-4">
+                        <div id="heroLottie" style="width: 100%; max-width: 450px; height=auto; margin: 0 auto;"></div>
                     </div>
-                    <img src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81" alt="Equipment Management" class="img-fluid rounded-4 hero-image shadow">
                 </div>
             </div>
         </div>
@@ -51,26 +57,27 @@
    
 </div>
 <div class="shape-divider">
-  @*   <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+    @*  <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
         <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
-    </svg> *@
-    <svg data-name="Layer 1"
-         xmlns="http://www.w3.org/2000/svg"
+    </svg>  *@
+    <svg xmlns="http://www.w3.org/2000/svg"
          viewBox="0 0 1200 120"
-         preserveAspectRatio="none">
-
-        <!-- Тук дефинираме градиента -->
+         preserveAspectRatio="none"
+         style="display:block">
         <defs>
-            <linearGradient id="myGradient" gradientTransform="rotate(135)">
+            <linearGradient id="heroGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stop-color="#4f46e5" />
                 <stop offset="100%" stop-color="#6366f1" />
             </linearGradient>
         </defs>
-
-        <!-- Тук указваме да се използва градиентът като пълнеж -->
-        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-              fill="url(#myGradient)"></path>
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,
+        82.39-16.72,168.19-17.73,250.45-.39C823.78,31,
+        906.67,72,985.66,92.83c70.05,18.48,146.53,
+        26.09,214.34,3V0H0V27.35A600.21,600.21,
+        0,0,0,321.39,56.44Z"
+              fill="url(#heroGradient)"></path>
     </svg>
+  
 </div>
 
 <section id="features" class="py-5">
@@ -309,3 +316,4 @@
         </div>
     </div>
 </section>
+<script src="~/js/lottieanimations.js"></script>

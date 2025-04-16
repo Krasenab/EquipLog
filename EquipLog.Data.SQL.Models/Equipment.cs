@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-
+using System.ComponentModel.DataAnnotations.Schema;
 using EquipLog.Constants;
 
 namespace EquipLog.Data.SQL.Models
@@ -40,6 +40,10 @@ namespace EquipLog.Data.SQL.Models
         public DateTime? UpdatedAt { get; set; }
         public int LifeSpanYears { get; set; }
         public string Notes { get; set; }
+
+        [ForeignKey(nameof(CategoryId))]
+        public int CategoryId { get; set; }
+        public Category Category { get; set; } 
         public List<Tickets> Tickets { get; set; }
         public List<EquipmentParts> EquipmentParts { get; set; }
         public List<AppImages> EquipmentImages { get; set; }

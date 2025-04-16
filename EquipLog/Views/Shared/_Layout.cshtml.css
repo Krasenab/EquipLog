@@ -116,14 +116,9 @@ button.accept-policy {
   line-height: inherit;
 }
 
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    white-space: nowrap;
-    line-height: 60px;
-    border: 2px solid yellow;
-    
+#myFooter {
+    position:absolute;
+    width:100%;
 }
     .footer > .container {
        display:flex;
