@@ -14,6 +14,7 @@ namespace EquipLogData
         }
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<Category> Categories { get; set; } 
         public DbSet<Equipment> Equipments { get; set; }
         public DbSet<EquipmentParts> EquipmentParts { get; set; }
         public DbSet<Technician> Technicians { get; set; }
@@ -22,6 +23,8 @@ namespace EquipLogData
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+
 
 
             modelBuilder.Entity<Tickets>()
@@ -41,7 +44,12 @@ namespace EquipLogData
             .HasForeignKey(t => t.TechnicianId)
             .OnDelete(DeleteBehavior.Restrict);
 
-
+            modelBuilder.Entity<Equipment>()
+                .HasOne(x => x.Category)
+                .WithMany(c => c.Equipments)
+                .HasForeignKey(f => f.CategoryId)
+                .OnDelete(DeleteBehavior.Restrict);
+                
         }
     }
 }

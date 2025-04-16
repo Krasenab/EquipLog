@@ -3,6 +3,8 @@ using EquipLog.Data.SQL.Models;
 using EquipLogData;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using MongoDB.Driver;
 
 namespace EquipLog
 {
@@ -28,8 +30,21 @@ namespace EquipLog
             })
                 .AddRoles<IdentityRole<Guid>>()
                 .AddEntityFrameworkStores<EquipLogDbContext>();
-            
-            
+
+            builder.Services.Configure<EquipLogMongoDbSettings>(
+                builder.Configuration.GetSection("MongoDbSettings")
+                );
+            builder.Services.AddSingleton<IMongoClient>(m =>  {
+                var config = m.GetRequiredService<IOptions<EquipLogMongoDbSettings>>().Value;
+                return new MongoClient(config.ConnectionString);
+            });
+            builder.Services.AddSingleton(sp =>
+            {
+                var config = sp.GetRequiredService<IOptions<EquipLogMongoDbSettings>>().Value;
+                var client = sp.GetRequiredService<IMongoClient>();
+                return client.GetDatabase(config.DatabaseName);
+            });
+
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
@@ -57,6 +72,12 @@ namespace EquipLog
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
+            app.MapGet("/mongo-test", async (IMongoDatabase db) =>
+            {
+                var names = await db.ListCollectionNames().ToListAsync();
+                return Results.Ok(new { Collections = names });
+            });
+
 
             app.Run();
         }
