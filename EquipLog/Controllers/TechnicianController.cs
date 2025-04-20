@@ -1,16 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace EquipLog.Controllers
 {
-    public class EquipmentController : Controller
+    public class TechnicianController : Controller
     {
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult Join()
         {
-
             return View();
         }
-       
+
     }
 }

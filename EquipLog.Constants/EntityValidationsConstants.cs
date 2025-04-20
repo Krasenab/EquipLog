@@ -36,6 +36,7 @@
         public const int TechnicianNameMaxLength = 50;
         public const int TechnicianNameMinLength = 2;
 
+
         public const int TechCorporateIDMaxLength = 100;
         public const int TechCorporateIDMinLength = 2;
 
@@ -57,5 +58,7 @@
         public const int TicketStatusMinLength = 1;
 
         public const int DepartmentMaxLength = 50;
+        public const int PhoneNumberMaxLength = 15;
+        public const int PhoneNumberMinLength = 5;
     }
 }

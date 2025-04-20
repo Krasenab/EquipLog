@@ -13,7 +13,6 @@ namespace EquipLog.Data.SQL.Models
         public Technician()
         {
             this.Tickets = new List<Tickets>();
-
         }
         [Key]
         public Guid Id { get; set; }
@@ -25,6 +24,11 @@ namespace EquipLog.Data.SQL.Models
         public string TechCorporateID { get; set; }
         [Required]  
         public string Skill { get; set; }
+
+        [MaxLength(EntityValidationsConstants.ApplicationUserNameMaxLenght)]
+        public string? ReportsTo { get; set; }
+        [MaxLength(EntityValidationsConstants.PhoneNumberMaxLength)]
+        public string? PhoneNumber { get; set; }
         [ForeignKey(nameof(AppUserId))]
         public Guid AppUserId { get; set; }
         public ApplicationUser AppUser { get; set;}
