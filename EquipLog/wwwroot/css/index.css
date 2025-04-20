@@ -159,6 +159,16 @@
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
     transition: var(--transition);
 }
+.shape-divider {
+    line-height: 0;
+    margin-top: -1px; /* изтегли го с 1px нагоре, ако все пак има gap */
+}
+
+    .shape-divider svg {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
 
 /* Feature Cards */
 .feature-card {
