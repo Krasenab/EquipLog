@@ -1,5 +1,4 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿@model AddEquipmentViewModel
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,18 +33,22 @@
                 <div class="col-md-6">
                   <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-tag"></i></span>
-                    <input type="text" id="equipmentName" class="form-control" placeholder="Equipment Name" required>
+                    <input type="text" asp-for=EquipmentName id="equipmentName" class="form-control" placeholder="Equipment Name" required>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-list"></i></span>
-                    <select id="category" class="form-select" required>
-                      <option value="" disabled selected>Category</option>
+                    <select asp-for="CategoryId" class="form-select" required>
+                        @foreach (var category in Model.Categories)
+                        {
+                           <option value="@category.Id">@category.CategoryName</option>                         
+                        }
+                      @* <option value="" disabled selected>Category</option>
                       <option>Computer</option>
                       <option>Printer</option>
                       <option>Router</option>
-                      <option>Other</option>
+                      <option>Other</option> *@
                     </select>
                   </div>
                 </div>
@@ -58,31 +61,31 @@
                 <div class="col-md-6">
                   <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-barcode"></i></span>
-                    <input type="text" id="serialNumber" class="form-control" placeholder="Serial Number" required>
+                    <input type="text" asp-for=SerialNumber class="form-control" placeholder="Serial Number" required>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-info-circle"></i></span>
-                    <input type="text" id="currentStatus" class="form-control" placeholder="Current Status" required>
+                    <input type="text" asp-for="CurrentStatus" class="form-control" placeholder="Current Status" required>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-shield-alt"></i></span>
-                    <input type="number" id="warrantyMonths" class="form-control" placeholder="Warranty (Months)" min="0" required>
+                    <input type="number" asp-for="EquipmentWarrantyMonths" class="form-control" placeholder="Warranty (Months)" min="0" required>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-hourglass-half"></i></span>
-                    <input type="number" id="lifespanYears" class="form-control" placeholder="Life Span (Years)" min="0" required>
+                    <input type="number" asp-for="LifeSpanYears" class="form-control" placeholder="Life Span (Years)" min="0" required>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-industry"></i></span>
-                    <input type="text" id="manufacturer" class="form-control" placeholder="Manufacturer" required>
+                    <input type="text" asp-for="Manufacturer" class="form-control" placeholder="Manufacturer" required>
                   </div>
                 </div>
               </div>
@@ -94,19 +97,19 @@
                 <div class="col-md-6">
                   <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-tag"></i></span>
-                    <input type="text" id="model" class="form-control" placeholder="Model" required>
+                    <input type="text" asp-for="Model" class="form-control" placeholder="Model" required>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-id-badge"></i></span>
-                    <input type="text" id="assetTag" class="form-control" placeholder="Asset Tag">
+                    <input type="text" asp-for="AssetTag" class="form-control" placeholder="Asset Tag">
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
-                    <input type="text" id="location" class="form-control" placeholder="Location">
+                    <input type="text" asp-for="Location" class="form-control" placeholder="Location/department">
                   </div>
                 </div>
               </div>
@@ -117,20 +120,20 @@
               <div class="row g-4">
                 <div class="col-12">
                   <div class="form-floating">
-                    <textarea id="description" class="form-control" placeholder="Description" style="height:120px;" required></textarea>
-                    <label for="description">Description</label>
+                    <textarea asp-for="Description" class="form-control" placeholder="Description" style="height:120px;" required></textarea>
+                    <label asp-for="Description">Description</label>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-floating">
                     <textarea id="customProperties" class="form-control" placeholder="Custom Properties" style="height:100px;"></textarea>
-                    <label for="customProperties">Custom Properties</label>
+                    <label asp-for="CustomProperties">Custom Properties</label>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-floating">
-                    <textarea id="notes" class="form-control" placeholder="Notes" style="height:100px;"></textarea>
-                    <label for="notes">Notes</label>
+                    <textarea asp-for="Notes" class="form-control" placeholder="Notes" style="height:100px;"></textarea>
+                    <label asp-for="Notes">Notes</label>
                   </div>
                 </div>
               </div>
@@ -185,4 +188,4 @@
     });
   </script>
 </body>
-</html>
+

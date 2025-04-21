@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EquipLog.Interfaces\EquipLog.Interfaces.csproj" />
+    <ProjectReference Include="..\EquipLogData\EquipLogData.csproj" />
+  </ItemGroup>
+
 </Project>

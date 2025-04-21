@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EquipLog.Interfaces\EquipLog.Interfaces.csproj" />
     <ProjectReference Include="..\EquipLog.ViewModels\EquipLog.ViewModels.csproj" />
   </ItemGroup>
 

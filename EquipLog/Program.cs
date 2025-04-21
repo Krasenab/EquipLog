@@ -1,10 +1,15 @@
-
 using EquipLog.Data.SQL.Models;
 using EquipLogData;
+using EquipLog.Web.Infrastructure;
+
+
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+
 using MongoDB.Driver;
+using EquipLog.Services;
+using EquipLog.Interfaces;
 
 namespace EquipLog
 {
@@ -31,6 +36,10 @@ namespace EquipLog
                 .AddRoles<IdentityRole<Guid>>()
                 .AddEntityFrameworkStores<EquipLogDbContext>();
 
+            // Add services with method
+            builder.Services.AddAppServices(typeof(EquipmentService));
+
+            //Configure MongoDB Atlas 
             builder.Services.Configure<EquipLogMongoDbSettings>(
                 builder.Configuration.GetSection("MongoDbSettings")
                 );

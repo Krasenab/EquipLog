@@ -20,6 +20,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EquipLog.Data.SQL.Models\EquipLog.Data.SQL.Models.csproj" />
+    <ProjectReference Include="..\EquipLog.Interfaces\EquipLog.Interfaces.csproj" />
+    <ProjectReference Include="..\EquipLog.ViewModels\EquipLog.ViewModels.csproj" />
+    <ProjectReference Include="..\EquipLog.Web.Infrastructure\EquipLog.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\EquipLogData\EquipLogData.csproj" />
   </ItemGroup>
 
