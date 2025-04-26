@@ -21,19 +21,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EquipLog.Data.MongoDb.Model
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EquipLogViewModels", "EquipLogViewModels", "{3936E004-9E0E-41CB-8653-8A4F7073B970}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EquipLog.ViewModels", "EquipLog.ViewModels\EquipLog.ViewModels.csproj", "{83D5BF7E-6D8B-443E-BBD5-FCD3DADC650E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EquipLog.ViewModels", "EquipLog.ViewModels\EquipLog.ViewModels.csproj", "{83D5BF7E-6D8B-443E-BBD5-FCD3DADC650E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{ACA5DA69-6180-400C-8A36-768B4A4BD3E3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interfaces", "Interfaces", "{7C8E9068-0523-45FE-82DB-CF35815551BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EquipLog.Services", "EquipLog.Services\EquipLog.Services.csproj", "{32156D7C-939E-45F1-A7A8-14B448BF4A8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EquipLog.Services", "EquipLog.Services\EquipLog.Services.csproj", "{32156D7C-939E-45F1-A7A8-14B448BF4A8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EquipLog.Interfaces", "EquipLog.Interfaces\EquipLog.Interfaces.csproj", "{5828A3B4-F417-4127-954A-EECE4DE6F724}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EquipLog.Interfaces", "EquipLog.Interfaces\EquipLog.Interfaces.csproj", "{5828A3B4-F417-4127-954A-EECE4DE6F724}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{EAC3812B-3D56-41CF-B4C9-23E2C4943F14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EquipLog.Web.Infrastructure", "EquipLog.Web.Infrastructure\EquipLog.Web.Infrastructure.csproj", "{54FE443A-ED6B-4E68-BA54-7C7DA0646E38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EquipLog.Web.Infrastructure", "EquipLog.Web.Infrastructure\EquipLog.Web.Infrastructure.csproj", "{54FE443A-ED6B-4E68-BA54-7C7DA0646E38}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

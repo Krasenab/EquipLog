@@ -1,0 +1,196 @@
+﻿@model EditEquipmentViewModel
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>eqipLog – Edit Equipment</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- AOS Animation CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- My stitle-->
+    <link href="~/css/eqiupmentcreate.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 col-lg-10">
+                <div class="card-custom" data-aos="zoom-in">
+                    <div class="card-header-custom">
+                        <i class="fas fa-cogs fa-2x mb-2"></i>
+                        <h3 class="fw-bold">Edit Equipment</h3>
+                        <p>Quickly register your device with our intuitive form</p>
+                    </div>
+                    <div class="card-body p-5 bg-white">
+                        <form id="equipmentForm" method="post" asp-controller="Equipment" asp-action="Edit" >
+                            <input asp-for="Id" type="hidden" />
+                            <!-- Basic Information -->
+                            <div class="section-separator"></div>
+                            <h5 class="mb-4 text-uppercase text-secondary">Basic Information</h5>
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-tag"></i></span>
+                                        <input type="text" asp-for="EquipmentName"  class="form-control" placeholder="Equipment Name" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-list"></i></span>
+                                        <select asp-for="CategoryId" class="form-select" >
+                                             @foreach (var category in Model.Categories)
+                                            {
+                                                <option value="@category.Id">@category.CategoryName</option>
+                                            } 
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Technical Details -->
+                            <div class="section-separator mt-5"></div>
+                            <h5 class="mb-4 text-uppercase text-secondary">Technical Details</h5>
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-barcode"></i></span>
+                                        <input type="text" asp-for="SerialNumber" class="form-control" placeholder="Serial Number" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-info-circle"></i></span>
+                                        <input type="text" asp-for="CurrentStatus" class="form-control" placeholder="Current Status" required>
+                                        <label asp-for="CurrentStatus"></label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-shield-alt"></i></span>
+                                        <input type="number" asp-for="EquipmentWarrantyMonths" class="form-control" placeholder="Warranty (Months)" min="0" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-hourglass-half"></i></span>
+                                        <input type="number" asp-for="LifeSpanYears" class="form-control" placeholder="Life Span (Years)" min="0" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-industry"></i></span>
+                                        <input type="text" asp-for="Manufacturer" class="form-control" placeholder="Manufacturer" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Key Identifiers -->
+                            <div class="section-separator mt-5"></div>
+                            <h5 class="mb-4 text-uppercase text-secondary">Key Identifiers</h5>
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-tag"></i></span>
+                                        <input type="text" asp-for="Model" class="form-control" placeholder="Model" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-id-badge"></i></span>
+                                        <input type="text" asp-for="AssetTag" class="form-control" placeholder="Asset Tag">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                                        <input type="text" asp-for="Location" class="form-control" placeholder="Location/department">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-circle-user"></i></span>
+                                        <input type="text" asp-for="AddedFrom" class="form-control" placeholder="Technician ID">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Additional Information -->
+                            <div class="section-separator mt-5"></div>
+                            <h5 class="mb-4 text-uppercase text-secondary">Additional Information</h5>
+                            <div class="row g-4">
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <textarea asp-for="Description" class="form-control" placeholder="Description" style="height:120px;" required></textarea>
+                                        <label asp-for="Description">Description</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <textarea asp-for="CustomProperties" id="customProperties" class="form-control" placeholder="Custom Properties" style="height:100px;"></textarea>
+                                        <label asp-for="CustomProperties">Custom Properties</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <textarea asp-for="Notes" class="form-control" placeholder="Notes" style="height:100px;"></textarea>
+                                        <label asp-for="Notes">Notes</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Actions -->
+                            <div class="text-center mt-5">
+                                <button type="reset" id="cancelBtn" class="btn btn-outline-secondary btn-custom me-3">
+                                    <span class="btn-text"><i class="fas fa-times-circle me-2"></i>Cancel</span>
+                                </button>
+                                <button type="submit" id="createBtn" class="btn btn-primary btn-custom">
+                                    <span class="btn-text"><i class="fas fa-plus-circle me-2"></i>Edit Equipment</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 700, once: true });
+
+        const form = document.getElementById('equipmentForm');
+        const createBtn = document.getElementById('createBtn');
+        const cancelBtn = document.getElementById('cancelBtn');
+
+        function morph(btn, success, callback) {
+            btn.disabled = true;
+            btn.classList.add('btn-loading');
+            setTimeout(() => {
+                btn.classList.remove('btn-loading');
+                btn.classList.add(success ? 'btn-success' : 'btn-error');
+                setTimeout(callback, 800);
+            }, 2000);
+        }
+
+        createBtn.addEventListener('click', e => {
+            e.preventDefault();
+            morph(createBtn, true, () => form.submit());
+        });
+
+        cancelBtn.addEventListener('click', e => {
+            e.preventDefault();
+            morph(cancelBtn, false, () => {
+                cancelBtn.classList.remove('btn-error');
+                cancelBtn.disabled = false;
+            });
+        });
+    </script>
+</body>
+

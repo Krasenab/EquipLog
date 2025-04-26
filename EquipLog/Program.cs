@@ -81,11 +81,11 @@ namespace EquipLog
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
-            app.MapGet("/mongo-test", async (IMongoDatabase db) =>
-            {
-                var names = await db.ListCollectionNames().ToListAsync();
-                return Results.Ok(new { Collections = names });
-            });
+            //app.MapGet("/mongo-test", async (IMongoDatabase db) =>
+            //{
+            //    var names = await db.ListCollectionNames().ToListAsync();
+            //    return Results.Ok(new { Collections = names });
+            //});
 
 
             app.Run();

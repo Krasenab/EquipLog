@@ -44,11 +44,7 @@
                         {
                            <option value="@category.Id">@category.CategoryName</option>                         
                         }
-                      @* <option value="" disabled selected>Category</option>
-                      <option>Computer</option>
-                      <option>Printer</option>
-                      <option>Router</option>
-                      <option>Other</option> *@
+                      
                     </select>
                   </div>
                 </div>
@@ -106,10 +102,16 @@
                     <input type="text" asp-for="AssetTag" class="form-control" placeholder="Asset Tag">
                   </div>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-6">
                   <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
                     <input type="text" asp-for="Location" class="form-control" placeholder="Location/department">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-circle-user"></i></span>
+                    <input type="text" asp-for="AddedFrom" class="form-control" placeholder="Technician ID">
                   </div>
                 </div>
               </div>

@@ -16,6 +16,7 @@
         public const int EquipmentModelMaxLength = 250;
         public const int EquipmentModelMinLength = 1;
 
+        public const int EquipmentAssetTagMaxLength = 150;
         public const int EquipmentAssetTagMinLength = 1;
 
         public const int EquipmentLifeSpanYearsMinValue = 0;

@@ -1,5 +1,6 @@
 ﻿using EquipLog.Interfaces;
 using EquipLog.ViewModels;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 
@@ -26,8 +27,39 @@ namespace EquipLog.Controllers
         [HttpPost]
         public IActionResult Create(AddEquipmentViewModel viewModel) 
         {
+            if (!ModelState.IsValid) 
+            {
+                return View(viewModel);
+            }
+            _equipmentService.AddEquipment(viewModel);
 
             return RedirectToAction("Index", "Home");
+        }
+        [HttpGet]
+        public async Task<IActionResult> Edit(string Id) 
+        {                      
+            
+            EditEquipmentViewModel model = await _equipmentService.GetEquipmentForEditAsync(Id);
+            if (model==null)
+            {
+                return BadRequest();
+            }
+            model.Categories = await _categoryService.GetAllCategoriesAsync();
+            
+            return View(model);
+        }
+        [HttpPost]
+        
+        public  IActionResult Edit(EditEquipmentViewModel equipmentModel) 
+        {
+          
+            if (!ModelState.IsValid)
+            {
+                return View(equipmentModel);
+            }
+            _equipmentService.Edit(equipmentModel);
+            return RedirectToAction("Index", "Home"); // should be : "Equipment", "Details"
+
         }
        
     }

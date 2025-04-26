@@ -33,6 +33,7 @@ namespace EquipLog.Data.SQL.Models
         [Required]
         [MaxLength(EntityValidationsConstants.EquipmentModelMaxLength)]
         public string Model { get; set; }
+        [MaxLength(EntityValidationsConstants.EquipmentAssetTagMaxLength)]
         public string? AssetTag { get; set; }
         public string? Location { get; set; }
         public string? CustomProperties { get; set; }        
@@ -40,7 +41,9 @@ namespace EquipLog.Data.SQL.Models
         public DateTime? UpdatedAt { get; set; }
         public int LifeSpanYears { get; set; }
         public string Notes { get; set; }
-
+        [Required]
+        [MaxLength(EntityValidationsConstants.TechCorporateIDMaxLength)]
+        public string AddedFrom { get; set; }
         [ForeignKey(nameof(CategoryId))]
         public int CategoryId { get; set; }
         public Category Category { get; set; } 

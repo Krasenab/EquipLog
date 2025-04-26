@@ -1,16 +1,20 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using EquipLog.Constants;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using EquipLog.Constants;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace EquipLog.ViewModels
 {
-    public class AddEquipmentViewModel
+    public class EditEquipmentViewModel
     {
-        public AddEquipmentViewModel()
+        public EditEquipmentViewModel()
         {
             this.Categories = new List<CategoryViewModel>();
         }
-
+        public Guid Id { get; set; }
         [Required]
         [MaxLength(EntityValidationsConstants.EquipmentNameMaxLength)]
         [MinLength(EntityValidationsConstants.EquipmentNameMinLength)]
@@ -47,7 +51,6 @@ namespace EquipLog.ViewModels
         public int LifeSpanYears { get; set; }
         public string Notes { get; set; }
         public int CategoryId { get; set; }
-        public List<CategoryViewModel> Categories { get; set; }
-
+        public List<CategoryViewModel> Categories { get; set; } 
     }
 }

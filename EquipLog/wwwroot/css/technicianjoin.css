@@ -3,25 +3,28 @@
     --primary-light: #8b85f9;
     --secondary: #10b981;
     --error: #dc3545;
-    --light-bg: #f9fafe;
-    --pill-radius: 50px;
-    --transition-fast: all 0.25s ease;
+    --bg: #f9fafe;
+    --pill: 50px;
+    --transition: all 0.3s ease;
 }
 
 * {
-    transition: var(--transition-fast);
+    transition: var(--transition);
 }
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: var(--light-bg);
+    background: var(--bg);
     color: #333;
+    padding: 2rem 0;
 }
 
 .card-custom {
+    max-width: 600px;
+    margin: 0 auto;
     border: none;
-    border-radius: var(--pill-radius);
-    box-shadow: 0 12px 20px -5px rgba(0,0,0,0.1);
+    border-radius: var(--pill);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.1);
     overflow: hidden;
 }
 
@@ -39,6 +42,11 @@ body {
 
     .card-header-custom h3 {
         margin-bottom: .5rem;
+        font-weight: 600;
+    }
+
+    .card-header-custom p {
+        opacity: .85;
     }
 
 .section-separator {
@@ -55,92 +63,128 @@ body {
     color: var(--primary);
 }
 
-.form-control, .form-select {
-    border-radius: var(--pill-radius);
+.form-control {
+    border-radius: var(--pill);
     border: 1px solid #dee2e6;
 }
 
-    .form-control:focus, .form-select:focus {
+    .form-control:focus {
         border-color: var(--primary);
         box-shadow: 0 0 0 0.2rem rgba(99,102,241,0.2);
     }
 
-/* —— Morphing Progress Button —— */
+/* morphing button */
 .btn-custom {
     position: relative;
     overflow: hidden;
-    border-radius: var(--pill-radius);
+    border-radius: var(--pill);
     padding: .75rem 2rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: .5px;
 }
 
+    .btn-custom .btn-text {
+        opacity: 1;
+        transition: opacity .2s ease;
+    }
+
+    .btn-custom .btn-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0;
+        transition: opacity .2s ease 0.2s, transform .2s ease 0.2s;
+        font-size: 1.2rem;
+        pointer-events: none;
+    }
+
 .btn-primary {
     background: var(--primary);
     border: none;
     color: #fff;
-    box-shadow: 0 5px 15px rgba(99,102,241,0.4);
 }
 
     .btn-primary:hover {
         background: var(--primary-light);
         transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(99,102,241,0.5);
     }
 
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-/* loading state */
-.btn-loading .btn-text {
-    opacity: 0 !important;
-}
-
-.btn-loading::after {
+/* progress bar */
+.btn-custom::after {
     content: "";
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 1.5rem;
-    height: 1.5rem;
-    margin: -0.75rem 0 0 -0.75rem;
-    border: 3px solid #fff;
-    border-top-color: transparent;
-    border-radius: 50%;
-    animation: spin .8s linear infinite;
+    bottom: 0;
+    left: 0;
+    height: 5px;
+    width: 0%;
+    background: #fff;
+    color: var(--primary);
+    transform-origin: left;
+    transition: width 2s linear;
+    broder : 2px solid black;
 }
-/* success = wrench */
-.btn-done .btn-text {
+
+.btn-custom.loading::after {
+    width: 100%;
+}
+
+.btn-custom.loading .btn-text {
+    opacity: 0;
+}
+
+/* hide text in final states */
+.btn-custom.btn-success .btn-text,
+.btn-custom.btn-error .btn-text {
     opacity: 0 !important;
 }
 
-.btn-done::after {
-    content: "\f0ad";
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    font-size: 1.2rem;
+/* success */
+.btn-custom.btn-success .btn-icon {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    animation: bounce .6s ease;
     color: #fff;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-/* error = cross */
-.btn-error .btn-text {
-    opacity: 0 !important;
 }
 
-.btn-error::after {
-    content: "\f057";
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    font-size: 1.2rem;
+.btn-custom.btn-success::after {
+    width: 0 !important;
+}
+
+/* error */
+.btn-custom.btn-error .btn-icon {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    animation: shake .6s ease;
     color: #fff;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+}
+
+.btn-custom.btn-error::after {
+    width: 0 !important;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.3);
+    }
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translate(-50%, -50%) translateX(0);
+    }
+
+    25%, 75% {
+        transform: translate(-50%, -50%) translateX(-4px);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) translateX(4px);
+    }
 }
