@@ -1,0 +1,297 @@
+﻿@model LoginAppUserViewModel
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EquipLog – Регистрация</title>
+
+    <!-- FontAwesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-light: #8b85f9;
+            --secondary: #10b981;
+            --bg: #f9fafe;
+            --pill: 50px;
+            --transition: all 0.3s ease;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            transition: var(--transition);
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Бизнес-графики: зъбни колела зад формата */
+        .bg-icon {
+            position: absolute;
+            color: var(--primary);
+            opacity: 0.10; /* увеличена непрозрачност */
+            pointer-events: none;
+        }
+
+            .bg-icon.top-left {
+                top: -40px;
+                left: -40px;
+                font-size: 28rem;
+                transform: rotate(0deg);
+            }
+
+            .bg-icon.bottom-right {
+                bottom: -50px;
+                right: -50px;
+                font-size: 32rem;
+                transform: rotate(30deg);
+            }
+
+        .card-custom {
+            position: relative;
+            max-width: 600px;
+            margin: 4rem auto;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(10px);
+            border: none;
+            border-radius: var(--pill);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            z-index: 1;
+        }
+
+            .card-custom:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 16px 40px rgba(0,0,0,0.15);
+            }
+
+        .card-header-custom {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: #fff;
+            clip-path: polygon(0 0,100% 0,100% 85%,0 100%);
+            text-align: center;
+            padding: 3rem 1.5rem;
+        }
+
+            .card-header-custom h3 {
+                margin-bottom: .5rem;
+                font-weight: 600;
+            }
+
+            .card-header-custom p {
+                margin: 0;
+                opacity: .85;
+            }
+
+        .section-separator {
+            height: 4px;
+            background: var(--secondary);
+            margin: 2rem 0 1rem;
+            border-radius: 2px;
+        }
+
+        .input-group-text {
+            background: transparent;
+            border: none;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .form-control {
+            border-radius: var(--pill);
+            border: 1px solid #dde1e7;
+            padding: .75rem 1rem;
+        }
+
+            .form-control:focus {
+                border-color: var(--primary);
+                box-shadow: 0 0 0 0.2rem rgba(99,102,241,0.2);
+            }
+
+        /* Morphing button */
+        .btn-custom {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--pill);
+            padding: .75rem 2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+        }
+
+            .btn-custom .btn-text {
+                opacity: 1;
+                transition: opacity .2s ease;
+            }
+
+            .btn-custom .btn-icon {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%) scale(0.8);
+                opacity: 0;
+                transition: opacity .2s ease 0.2s, transform .2s ease 0.2s;
+                font-size: 1.2rem;
+                pointer-events: none;
+            }
+
+        .btn-primary {
+            background: var(--primary);
+            border: none;
+            color: #fff;
+        }
+
+            .btn-primary:hover {
+                background: var(--primary-light);
+                box-shadow: 0 8px 20px rgba(99,102,241,0.5);
+                transform: translateY(-2px);
+            }
+
+        /* Progress bar */
+        .btn-custom::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            width: 0%;
+            background: #fff;
+            transform-origin: left;
+            transition: width 2s linear;
+        }
+
+        .btn-custom.loading::after {
+            width: 100%;
+        }
+
+        .btn-custom.loading .btn-text {
+            opacity: 0;
+        }
+
+        .btn-custom.btn-success .btn-text,
+        .btn-custom.btn-error .btn-text {
+            opacity: 0 !important;
+        }
+
+        @@keyframes bounce {
+            0%, 100% {
+                transform: translate(-50%,-50%) scale(1);
+            }
+
+            50% {
+                transform: translate(-50%,-50%) scale(1.3);
+            }
+        }
+
+        @@keyframes shake {
+            0%, 100% {
+                transform: translate(-50%,-50%) translateX(0);
+            }
+
+            25%, 75% {
+                transform: translate(-50%,-50%) translateX(-4px);
+            }
+
+            50% {
+                transform: translate(-50%,-50%) translateX(4px);
+            }
+        }
+
+        .btn-custom.btn-success .btn-icon {
+            opacity: 1;
+            transform: translate(-50%,-50%) scale(1);
+            animation: bounce .6s ease;
+            color: #fff;
+        }
+
+        .btn-custom.btn-success::after {
+            width: 0 !important;
+        }
+
+        .btn-custom.btn-error .btn-icon {
+            opacity: 1;
+            transform: translate(-50%,-50%) scale(1);
+            animation: shake .6s ease;
+            color: #fff;
+        }
+
+        .btn-custom.btn-error::after {
+            width: 0 !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Полупрозрачните зъбни колела зад формата -->
+    <i class="fas fa-cog bg-icon top-left"></i>
+    <i class="fas fa-cogs bg-icon bottom-right"></i>
+
+    <div class="card-custom" data-aos="zoom-in">
+        <div class="card-header-custom">
+            <i class="fas fa-user-plus fa-2x mb-2"></i>
+            <h3>Welcome back</h3>
+            <p>Log in</p>
+        </div>
+        <div class="card-body bg-white p-5">
+            <form id="regForm" method="post" asp-controller="AppUser" asp-action="Login">
+                <div class="section-separator"></div>
+                <h5 class="mb-4 text-secondary text-uppercase"></h5>
+                <div class="row g-4">
+
+                 
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            <input asp-for="CorporateId" type="text" class="form-control" placeholder="Corporate ID" required>
+                        </div>
+                    </div>
+                                       
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                            <input asp-for="Password" type="password" class="form-control" placeholder="Password" required>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="text-center mt-5">
+
+                    <button type="submit" id="registerBtn" class="btn btn-primary btn-custom">
+                        <span class="btn-text"><i class="fas fa-user-check me-2"></i>Login</span>
+                        <span class="btn-icon"><i class="fas fa-check"></i></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const form = document.getElementById('regForm');
+        const registerBtn = document.getElementById('registerBtn');
+
+        function morph(btn, isSuccess, callback) {
+            btn.disabled = true;
+            btn.classList.add('loading');
+            setTimeout(() => {
+                btn.classList.remove('loading');
+                btn.classList.add(isSuccess ? 'btn-success' : 'btn-error');
+                setTimeout(callback, 800);
+            }, 2000);
+        }
+
+        registerBtn.addEventListener('click', e => {
+            e.preventDefault();
+            morph(registerBtn, true, () => form.submit());
+        });
+    </script>
+</body>
+
