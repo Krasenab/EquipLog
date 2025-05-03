@@ -17,6 +17,51 @@ namespace EquipLog.Services
         {
             this._dbContext = equipLogDbContext;    
         }
+        public async Task<List<EquipmentListItemViewModel>> GetAllFilteredEquipment(string searchTerm, string category)
+        {
+            List<EquipmentListItemViewModel> result = new List<EquipmentListItemViewModel>();
+            var query = _dbContext.Equipments.Include(c=>c.Category).AsQueryable();
+            if (!string.IsNullOrEmpty(searchTerm) || !string.IsNullOrWhiteSpace(searchTerm)) 
+            {
+                string searchTermQuery = searchTerm.Trim() + "%";
+
+                query = query.Where(x =>
+                EF.Functions.Like(x.SerialNumber, searchTermQuery) ||
+                EF.Functions.Like(x.Manufacturer, searchTermQuery) ||
+                EF.Functions.Like(x.Location, searchTerm) ||
+                EF.Functions.Like(x.CurrentStatus, searchTerm) ||
+                EF.Functions.Like(x.EquipmentName, searchTerm)
+
+                );
+            }
+            result = await query.Select(x=>new EquipmentListItemViewModel() 
+            {
+                Id = x.Id,
+                Name = x.EquipmentName,
+                Category = x.Category.CategoryName,
+                Location = x.Location,
+                SerialNumber = x.SerialNumber,
+                Status = x.CurrentStatus
+
+            })
+                .ToListAsync();
+            return result;
+        }
+
+        public async Task<List<EquipmentListItemViewModel>> GetAllEquipmentAsync()
+        {
+            List<EquipmentListItemViewModel> listOfEquipments = await _dbContext.Equipments.Select(e => new EquipmentListItemViewModel()
+            {
+                Id = e.Id,
+                Name = e.EquipmentName,
+                Category = e.Category.CategoryName,
+                Location = e.Location,
+                SerialNumber = e.SerialNumber,
+                Status = e.CurrentStatus
+
+            }).ToListAsync();
+            return listOfEquipments;
+        }
         public void AddEquipment(AddEquipmentViewModel addEquipmentViewModel)
         {            
                 Equipment equipment = new Equipment()
@@ -63,6 +108,8 @@ namespace EquipLog.Services
             this._dbContext.SaveChanges();
         }
 
+        
+
         public async Task<EditEquipmentViewModel> GetEquipmentForEditAsync(string equipmentId)
         {
             EditEquipmentViewModel? editEquipmentViewModel = await _dbContext.Equipments.Where(x => x.Id.ToString() == equipmentId)
@@ -87,6 +134,7 @@ namespace EquipLog.Services
                 }).FirstOrDefaultAsync();
             return editEquipmentViewModel;
         }
-       
+
+      
     }
 }

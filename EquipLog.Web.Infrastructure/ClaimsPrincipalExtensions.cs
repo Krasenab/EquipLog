@@ -10,7 +10,7 @@ namespace EquipLog.Web.Infrastructure
             {
                 return "";
             }
-            string result = appUser.FindFirst(ClaimTypes.NameIdentifier).Value;
+            string? result = appUser.FindFirst(ClaimTypes.NameIdentifier).Value;
             return result;
         }
     }

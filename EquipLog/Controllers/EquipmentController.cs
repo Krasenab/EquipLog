@@ -15,6 +15,27 @@ namespace EquipLog.Controllers
                 this._categoryService = categoryService;
                 this._equipmentService = equipmentService;
         }
+
+
+        [HttpGet]
+        public async Task<IActionResult> AllEquipment()
+        {
+            EquipmentFilterViewModel view = new EquipmentFilterViewModel()
+            {
+                SearchTerm = "",
+                CategoryFilter = "",
+                Categories = await _categoryService.GetAllCategoriesAsync(),
+                Equipments = await _equipmentService.GetAllEquipmentAsync()
+            };
+            return View(view);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Filter(string searchTerm, string category)
+        {
+            
+            var filterViewModel = await _equipmentService.GetAllFilteredEquipment(searchTerm, category);
+            return PartialView("_EquipmentGridPartial", filterViewModel);
+        }
         [HttpGet]
         public  async Task<IActionResult> Create()
         {

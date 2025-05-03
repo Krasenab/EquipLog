@@ -9,5 +9,6 @@ namespace EquipLog.Interfaces
     public interface IAppUserService
     {
         Task<string> GetEmailAsync(string corpId);
+       
     }
 }

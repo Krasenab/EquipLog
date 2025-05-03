@@ -21,5 +21,7 @@ namespace EquipLog.Services
             string? result = await _dbContext.ApplicationUsers.Where(x => x.CorporateID == corpId).Select(x => x.Email).FirstOrDefaultAsync();
             return result;
         }
+
+       
     }
 }

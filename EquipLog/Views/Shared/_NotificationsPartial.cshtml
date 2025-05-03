@@ -1,17 +1,18 @@
 ﻿@if (TempData["SuccessMessage"] != null)
 {
-    <text>toastr.success('@TempData["SuccessMessage"]');</text>
+    <script>toastr.success('@TempData["SuccessMessage"]');</script>
 }
 @if (TempData["ErrorMessage"] != null)
 {
-    <text>toastr.error('@TempData["ErrorMessage"]');</text>
+    <script>toastr.error('@TempData["ErrorMessage"]');</script>
 }
 @if (TempData["WarningMessage"] != null)
 {
-    <text>toastr.warning('@TempData["WarningMessage"]');</text>
+    <script>toastr.warning('@TempData["WarningMessage"]');</script>
 }
 @if (TempData["InfoMessage"] != null)
 {
-    <text>toastr.info('@TempData["InfoMessage"]');</text>
+    <script>toastr.info('@TempData["InfoMessage"]');</script>
+   
 }
 
