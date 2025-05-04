@@ -127,6 +127,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px,1fr));
     gap: 1.5rem;
+    
 }
 
 .equipment-card {
@@ -243,13 +244,15 @@
 }
 
 #containerAll {
-    margin-top: 5em;
-    height:100vh;
-    margin-bottom:5em;
+    margin-top: 8rem;
+    padding-bottom: 8rem;
+   
+
 }
 
 @media (max-width: 576px) {
     .toolbar-card {
+        border:2px solid black;
         flex-direction: column;
         align-items: stretch;
     }
@@ -258,3 +261,17 @@
             width: 100%;
         }
 }
+@media(max-width:992px) {
+    .card-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+    .toolbar-card {
+        flex-direction:column;
+        align-items: stretch;
+    }
+        .toolbar-card .input-group,
+        .toolbar-card .btn-new {
+            max-width: 100%;
+        }
+}
+

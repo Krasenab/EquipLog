@@ -1,6 +1,6 @@
 ﻿@model List<EquipmentListItemViewModel>
 
-<div class="card-grid" style="border:2px solid black;">
+@* <div class="" style="border:2px solid black;"> *@
     @if (Model.Count!=0)
     {
         @foreach (var e in Model)
@@ -48,17 +48,10 @@
     }
     else
     {
-        <div class="container" style="height:50vh; display: flex;justify-content: center;">
-
-
-        </div>
+        
 
     }
 
   
-</div>
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+@* </div> *@
+

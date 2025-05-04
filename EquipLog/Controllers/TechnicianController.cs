@@ -16,6 +16,7 @@ namespace EquipLog.Controllers
         [HttpGet]
         public IActionResult Join()
         {
+           
             return View();
         }
         [HttpPost]
@@ -23,6 +24,7 @@ namespace EquipLog.Controllers
         {
             if (!ModelState.IsValid) 
             {
+                TempData["WarningMessage"] = "The entered data is invalid or missing.";
                 return View(model);
             }
 
