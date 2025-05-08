@@ -96,10 +96,9 @@ namespace EquipLog.Controllers
                 this.TempData["ErrorMessage"] = "There was error while logging you ";
                 return View(viewModel);
             }
-            this.TempData["SuccessMessage"] = "Successfully login in equipment log app";
+            this.TempData["InfoMessage"] = "Welcome in EquipLog";
 
             return RedirectToAction("Index", "Home");
-
 
         }
         

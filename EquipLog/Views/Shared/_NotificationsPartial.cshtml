@@ -1,4 +1,4 @@
-﻿@if (TempData["SuccessMessage"] != null)
+﻿﻿@if (TempData["SuccessMessage"] != null)
 {
     <script>toastr.success('@TempData["SuccessMessage"]');</script>
 }
@@ -12,7 +12,9 @@
 }
 @if (TempData["InfoMessage"] != null)
 {
-    <script>toastr.info('@TempData["InfoMessage"]');</script>
-   
-}
+    <script>
+        toastr.info('@TempData["InfoMessage"]');
+      
+    </script>
 
+}

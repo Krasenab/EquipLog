@@ -82,7 +82,7 @@
     }
 
     $(function() {
-      // loadEquipment("@Model.SearchTerm", "@Model.CategoryFilter");
+       loadEquipment("@Model.SearchTerm", "@Model.CategoryFilter");
 
       $("#searchInput").on("input", function() {
         loadEquipment(this.value, $("#filterCategory").val());

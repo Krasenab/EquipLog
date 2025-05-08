@@ -38,6 +38,10 @@ namespace EquipLog
 
             // Add services with method
             builder.Services.AddAppServices(typeof(EquipmentService));
+            builder.Services.ConfigureApplicationCookie(cfg => 
+            {
+                cfg.LogoutPath = "/AppUser/Login";
+            });
 
             //Configure MongoDB Atlas 
             builder.Services.Configure<EquipLogMongoDbSettings>(

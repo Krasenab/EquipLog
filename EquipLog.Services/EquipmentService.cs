@@ -3,6 +3,7 @@ using EquipLog.Interfaces;
 using EquipLog.ViewModels;
 using EquipLogData;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using static Azure.Core.HttpHeader;
@@ -47,7 +48,7 @@ namespace EquipLog.Services
                 .ToListAsync();
             return result;
         }
-
+        [HttpGet]
         public async Task<List<EquipmentListItemViewModel>> GetAllEquipmentAsync()
         {
             List<EquipmentListItemViewModel> listOfEquipments = await _dbContext.Equipments.Select(e => new EquipmentListItemViewModel()

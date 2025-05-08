@@ -50,6 +50,7 @@ namespace EquipLog.Controllers
         {
             if (!ModelState.IsValid) 
             {
+                TempData["WarningMessage"] = "Invalid create form";
                 return View(viewModel);
             }
             _equipmentService.AddEquipment(viewModel);
