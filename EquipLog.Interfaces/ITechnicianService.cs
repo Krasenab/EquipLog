@@ -9,8 +9,7 @@ namespace EquipLog.Interfaces
 {
     public interface ITechnicianService
     {
-        public void JoinAsTechnician(JoinTechnicianViewModel joinViewModel); 
-        
-        
+        public Task<bool> isTechnicianAsync(string userId);
+        public void JoinAsTechnician(JoinTechnicianViewModel joinViewModel);         
     }
 }

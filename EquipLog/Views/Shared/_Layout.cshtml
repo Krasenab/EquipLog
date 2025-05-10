@@ -1,12 +1,19 @@
 ﻿@using EquipLog.Data.SQL.Models
+@using EquipLog.Interfaces
 @using EquipLog.Services
 @using EquipLog.Web.Infrastructure;
 @using Microsoft.AspNetCore.Identity;
 
 @inject SignInManager<ApplicationUser> signInManager
-
+@inject ITechnicianService techService
 @{
+    string currentUserId = "";
     bool isSignIn = signInManager.IsSignedIn(this.User);
+    if (isSignIn)
+    {
+         currentUserId = ClaimsPrincipalExtensions.currentUserId(this.User);
+    }
+    bool isTechinician = await techService.isTechnicianAsync(currentUserId);
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -85,7 +92,7 @@
                         <li class="nav-item">
                             <a id="myB" class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        @if (isSignIn)
+                        @if (isSignIn && !isTechinician)
                         {
                             <li class="nav-item">
                                 <a id="myB" class="nav-link" asp-area="" asp-controller="Technician" asp-action="Join">Join as technician</a>
