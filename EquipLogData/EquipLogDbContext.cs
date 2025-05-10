@@ -13,7 +13,6 @@ namespace EquipLogData
         {
 
         }
-
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Category> Categories { get; set; } 
         public DbSet<Equipment> Equipments { get; set; }

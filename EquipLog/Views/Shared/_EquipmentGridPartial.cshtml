@@ -36,11 +36,16 @@
                        class="btn btn-edit">
                         <i class="fas fa-edit"></i>
                     </a>
-                    <button type="button"
+                    <a asp-controller="Equipment"
+                        asp-action="Delete"
+                        asp-route-id="@e.Id"
+                        class="btn btn-delete"><i class="fas fa-trash"></i>
+                    </a>
+                   @*  <button type="button"
                             data-id="@e.Id"
                             class="btn btn-delete js-delete">
                         <i class="fas fa-trash"></i>
-                    </button>
+                    </button> *@
                 </div>
             </div>
         }

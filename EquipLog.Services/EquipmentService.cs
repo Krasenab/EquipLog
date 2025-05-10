@@ -18,6 +18,13 @@ namespace EquipLog.Services
         {
             this._dbContext = equipLogDbContext;    
         }
+        public void DeleteEquipment(string id)
+        {
+            Equipment? equipment = _dbContext.Equipments.Where(i => i.Id.ToString() == id).FirstOrDefault();
+
+            _dbContext.Equipments.Remove(equipment);
+            _dbContext.SaveChanges();
+        }
         public async Task<List<EquipmentListItemViewModel>> GetAllFilteredEquipment(string searchTerm, string category)
         {
             List<EquipmentListItemViewModel> result = new List<EquipmentListItemViewModel>();
@@ -47,8 +54,7 @@ namespace EquipLog.Services
             })
                 .ToListAsync();
             return result;
-        }
-        [HttpGet]
+        }        
         public async Task<List<EquipmentListItemViewModel>> GetAllEquipmentAsync()
         {
             List<EquipmentListItemViewModel> listOfEquipments = await _dbContext.Equipments.Select(e => new EquipmentListItemViewModel()
@@ -87,7 +93,6 @@ namespace EquipLog.Services
                 this._dbContext.SaveChanges();            
             
         }
-
         public void Edit(EditEquipmentViewModel eqipmentViewModel)
         {
            Equipment? editedEquipment = _dbContext.Equipments.Where(x=>x.Id== eqipmentViewModel.Id).FirstOrDefault();
@@ -108,9 +113,6 @@ namespace EquipLog.Services
           
             this._dbContext.SaveChanges();
         }
-
-        
-
         public async Task<EditEquipmentViewModel> GetEquipmentForEditAsync(string equipmentId)
         {
             EditEquipmentViewModel? editEquipmentViewModel = await _dbContext.Equipments.Where(x => x.Id.ToString() == equipmentId)
@@ -135,7 +137,9 @@ namespace EquipLog.Services
                 }).FirstOrDefaultAsync();
             return editEquipmentViewModel;
         }
-
-      
+        public async Task<bool> isExistAsync(string id)
+        {            
+            return await _dbContext.Equipments.Where(a=>a.Id.ToString()==id).AnyAsync();
+        }
     }
 }

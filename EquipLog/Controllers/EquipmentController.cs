@@ -15,7 +15,7 @@ namespace EquipLog.Controllers
                 this._categoryService = categoryService;
                 this._equipmentService = equipmentService;
         }
-
+        
 
         [HttpGet]
         public async Task<IActionResult> AllEquipment()
@@ -70,8 +70,7 @@ namespace EquipLog.Controllers
             
             return View(model);
         }
-        [HttpPost]
-        
+        [HttpPost]        
         public  IActionResult Edit(EditEquipmentViewModel equipmentModel) 
         {
           
@@ -82,6 +81,18 @@ namespace EquipLog.Controllers
             _equipmentService.Edit(equipmentModel);
             return RedirectToAction("Index", "Home"); // should be : "Equipment", "Details"
 
+        }
+        public async Task<IActionResult> Delete(string id) 
+        {
+            if (!await _equipmentService.isExistAsync(id))
+            {
+                TempData["ErrorMessage"] = "Equipment does not exist !";
+                return RedirectToAction("AllEquipment", "Equipment");
+            }
+            _equipmentService.DeleteEquipment(id);
+            TempData["SuccessMessage"] = "Successfully deleted the given equipment";
+
+            return RedirectToAction("AllEquipment", "Equipment");   
         }
        
     }

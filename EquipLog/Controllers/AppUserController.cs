@@ -35,8 +35,9 @@ namespace EquipLog.Controllers
         public async Task<IActionResult> Register(AppUserRegisterViewModel regModel) 
         {
 
-            if (!ModelState.IsValid) 
+            if (!ModelState.IsValid)
             {
+                TempData["ErrorMessage"] = "Invalid register data";                 
                 return View(regModel);
             }
 
@@ -60,6 +61,7 @@ namespace EquipLog.Controllers
                     ModelState.AddModelError(string.Empty, err.Description);
                 }
             }
+            TempData["SuccessMessage"] = "Successful registration";
             await _signInManager.SignInAsync(appUser, false);
             return RedirectToAction("Index", "Home");
 
@@ -76,17 +78,19 @@ namespace EquipLog.Controllers
             
             return View(login);
         }
+
         [HttpPost]
         public async Task<IActionResult> Login(LoginAppUserViewModel viewModel) 
         {
             if (!ModelState.IsValid) 
             {
+                TempData["ErrorMessage"] = "Invalid user information";
                 return View(viewModel); 
             }
             string email = await _appUserService.GetEmailAsync(viewModel.CorporateId);
             if (string.IsNullOrEmpty(email)) 
             {
-                this.TempData["WarningMessage"] = "Invalid corporate identity !";
+                this.TempData["WarningMessage"] = "Invalid corporate identity!";
                 return View(viewModel);
             }
 
