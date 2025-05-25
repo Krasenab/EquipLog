@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EquipLogData.Migrations
 {
     [DbContext(typeof(EquipLogDbContext))]
-    [Migration("20250422213702_addFieldToEquipment")]
-    partial class addFieldToEquipment
+    [Migration("20250525130302_fixColumn")]
+    partial class fixColumn
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

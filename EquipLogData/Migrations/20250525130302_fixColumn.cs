@@ -5,7 +5,7 @@
 namespace EquipLogData.Migrations
 {
     /// <inheritdoc />
-    public partial class addFieldToEquipment : Migration
+    public partial class fixColumn : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
