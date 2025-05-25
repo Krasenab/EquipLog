@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace EquipLogData.Migrations
 {
     /// <inheritdoc />
-    public partial class changeDb : Migration
+    public partial class resetDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -181,6 +183,8 @@ namespace EquipLogData.Migrations
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     TechCorporateID = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Skill = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ReportsTo = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
                     AppUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -206,13 +210,14 @@ namespace EquipLogData.Migrations
                     EquipmentWarrantyMonths = table.Column<int>(type: "int", nullable: false),
                     Manufacturer = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     Model = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
-                    AssetTag = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AssetTag = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
                     Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CustomProperties = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LifeSpanYears = table.Column<int>(type: "int", nullable: false),
                     Notes = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AddedFrom = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -328,6 +333,20 @@ namespace EquipLogData.Migrations
                         column: x => x.EquipmentId,
                         principalTable: "Equipments",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "Id", "CategoryName" },
+                values: new object[,]
+                {
+                    { 1, "Cleaning / Surface Preparation" },
+                    { 2, "Material Mixing / Vacuum Degassing" },
+                    { 3, "Dosing / Dispensing Systems" },
+                    { 4, "Selective Conformal Coating" },
+                    { 5, "Spray Coating Systems" },
+                    { 6, "Material Handling" },
+                    { 7, "Potting / Encapsulation" }
                 });
 
             migrationBuilder.CreateIndex(

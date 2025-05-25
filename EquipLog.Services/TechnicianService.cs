@@ -3,6 +3,7 @@ using EquipLog.Interfaces;
 using EquipLog.ViewModels;
 using EquipLogData;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 
 namespace EquipLog.Services
 {
@@ -12,6 +13,21 @@ namespace EquipLog.Services
         public TechnicianService(EquipLogDbContext dbContext)
         {
             this._dbContext = dbContext;
+        }
+
+        public async Task<List<TechnicianViewModel>> GetAllTechnicansAsync()
+        {
+            List<TechnicianViewModel> all = await _dbContext.Technicians.Select(t=>new TechnicianViewModel() 
+            {
+                id = t.Id.ToString(),
+                Name = t.Name,
+                TechCorporateId = t.TechCorporateID,
+                PhoneNumber = t.PhoneNumber,
+                AppUserId = t.AppUserId.ToString(),
+
+            }).ToListAsync();
+
+            return all; 
         }
 
         public Task<bool> isTechnicianAsync(string userId)

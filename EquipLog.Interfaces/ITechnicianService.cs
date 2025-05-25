@@ -9,6 +9,7 @@ namespace EquipLog.Interfaces
 {
     public interface ITechnicianService
     {
+        public Task<List<TechnicianViewModel>> GetAllTechnicansAsync();
         public Task<bool> isTechnicianAsync(string userId);
         public void JoinAsTechnician(JoinTechnicianViewModel joinViewModel);         
     }

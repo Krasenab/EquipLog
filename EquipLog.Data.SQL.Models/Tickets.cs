@@ -29,9 +29,11 @@ namespace EquipLog.Data.SQL.Models
         [ForeignKey(nameof(TechnicianId))]
         public Guid TechnicianId { get; set; } //  Assigned to technician
         public Technician Technician { get; set; }
+
         [ForeignKey(nameof(AppUserId))]
         public Guid AppUserId { get; set; } // Created by user
         public ApplicationUser ApplicationUser { get; set; }
+        
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set;}
         public DateTime? ClosedAt { get; set; }
