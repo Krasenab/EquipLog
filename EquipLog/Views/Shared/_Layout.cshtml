@@ -70,8 +70,6 @@
             background-color: #BD362F !important;
         }
     </style>
-
-
 </head>
 <body>
    
@@ -97,7 +95,16 @@
                             <li class="nav-item">
                                 <a id="myB" class="nav-link" asp-area="" asp-controller="Technician" asp-action="Join">Join as technician</a>
                             </li>
-                        }                       
+                        }
+                        @if (isSignIn && isTechinician)
+                        {
+                            <li class="nav-item">
+                                <a id="myB" class="nav-link" asp-area="" asp-controller="Equipment" asp-action="AllEquipment">Equipments</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="myB" class="nav-link" asp-area="" asp-controller="Tickets" asp-action="AllTickets">Tickets</a>
+                            </li>
+                        }
                         @if (!isSignIn)
                         {
                             <li class="nav-item">

@@ -31,8 +31,7 @@ namespace EquipLog.Controllers
         }
         [HttpGet]
         public async Task<IActionResult> Filter(string searchTerm, string category)
-        {
-            
+        {            
             var filterViewModel = await _equipmentService.GetAllFilteredEquipment(searchTerm, category);
             return PartialView("_EquipmentGridPartial", filterViewModel);
         }
@@ -46,41 +45,35 @@ namespace EquipLog.Controllers
             return View(viewModel);
         }
         [HttpPost]
-        public IActionResult Create(AddEquipmentViewModel viewModel) 
+        public async Task<IActionResult> Create(AddEquipmentViewModel viewModel) 
         {
             if (!ModelState.IsValid) 
             {
                 TempData["WarningMessage"] = "Invalid create form";
+                viewModel.Categories = await _categoryService.GetAllCategoriesAsync();
                 return View(viewModel);
             }
-            _equipmentService.AddEquipment(viewModel);
 
-            return RedirectToAction("Index", "Home");
+            _equipmentService.AddEquipment(viewModel);
+            TempData["SuccessMessage"] = "You have successfuly added new equipment";
+            return RedirectToAction("AllEquipment", "Equipment");
         }
         [HttpGet]
         public async Task<IActionResult> Edit(string Id) 
-        {                      
-            
+        {                                  
             EditEquipmentViewModel model = await _equipmentService.GetEquipmentForEditAsync(Id);
-            if (model==null)
-            {
-                return BadRequest();
-            }
-            model.Categories = await _categoryService.GetAllCategoriesAsync();
-            
+            model.Categories = await _categoryService.GetAllCategoriesAsync();           
             return View(model);
         }
         [HttpPost]        
         public  IActionResult Edit(EditEquipmentViewModel equipmentModel) 
-        {
-          
+        {          
             if (!ModelState.IsValid)
             {
                 return View(equipmentModel);
             }
             _equipmentService.Edit(equipmentModel);
             return RedirectToAction("Index", "Home"); // should be : "Equipment", "Details"
-
         }
         public async Task<IActionResult> Delete(string id) 
         {
